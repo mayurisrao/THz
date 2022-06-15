@@ -1,0 +1,12 @@
+# Example 2.1 - a laboratory propagation path
+
+f 0 GHz 1000 GHz 1000 kHz     # frequency grid for computation
+T0 0 C                       # background temperature
+layer
+h 1 km                     # introduces a layer
+P 1013.25 mbar               # layer pressure
+T -5 C 
+za 0 deg                      # layer temperature
+
+column h2o 1.8 mm_pwv 
+lineshape VVH_750 h2o_lines
