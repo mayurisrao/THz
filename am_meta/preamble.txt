@@ -1,0 +1,8 @@
+f {0} {1} {2} {3} {4} {5}
+output f tau tx Tb 
+za {6} {7}
+tol 1e-4
+
+Nscale h2o {8}
+
+T0 2.7 K
