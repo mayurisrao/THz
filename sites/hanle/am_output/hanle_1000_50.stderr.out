@@ -1,6 +1,6 @@
 # am version 13.0 (build date May 30 2024 14:06:47)
 
-# run time 3.308 s
+# run time 3.123 s
 
 f 10 GHz  1000 GHz  0.025 GHz
 output f GHz  tau neper  tx none  Tb K
