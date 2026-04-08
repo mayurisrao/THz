@@ -1,6 +1,6 @@
 # am version 13.0 (build date May 30 2024 14:06:47)
 
-# run time 3.506 s
+# run time 2.922 s
 
 f 10 GHz  1000 GHz  0.025 GHz
 output f GHz  tau neper  tx none  Tb K
@@ -352,32 +352,18 @@ column h2o hydrostatic 0.001392  (1.47642e+21 cm^-2)  (* 1.00000)
 column o3 hydrostatic 5.311e-08  (5.63309e+16 cm^-2)
 
 layer troposphere
-# P 525 mbar
-# T 257.093 K
-# dP 50 mbar
-Pbase 550 mbar
-Tbase 258.67 K
-Mair 28.964 h2o o3  (28.9461)
+# P 517.685 mbar
+# T 256.579 K
+# dP 35.37 mbar
+Pbase 535.37 mbar (observing level)
+Tbase 257.68 K
+Mair 28.964 h2o o3  (28.9465)
 lineshape Gross ch4 co co2 n2o o2_uncoupled o3
 lineshape VVW_coupled o2_coupled
 lineshape VVH_750 h2o_lines
-column dry_air hydrostatic (0.998368)  (1.05901e+24 cm^-2)
-column h2o hydrostatic 0.001632  (1.73113e+21 cm^-2)  (* 1.00000)
-column o3 hydrostatic 4.751e-08  (5.03958e+16 cm^-2)
-
-layer troposphere
-# P 567.765 mbar
-# T 260.452 K
-# dP 35.53 mbar
-Pbase 585.53 mbar (observing level)
-Tbase 262.18 K
-Mair 28.964 h2o o3  (28.9462)
-lineshape Gross ch4 co co2 n2o o2_uncoupled o3
-lineshape VVW_coupled o2_coupled
-lineshape VVH_750 h2o_lines
-column dry_air hydrostatic (0.998374)  (7.52536e+23 cm^-2)
-column h2o hydrostatic 0.001626  (1.22562e+21 cm^-2)  (* 1.00000)
-column o3 hydrostatic 4.725e-08  (3.56152e+16 cm^-2)
+column dry_air hydrostatic (0.998397)  (7.49158e+23 cm^-2)
+column h2o hydrostatic 0.001603  (1.20283e+21 cm^-2)  (* 1.00000)
+column o3 hydrostatic 4.857e-08  (3.6445e+16 cm^-2)
 
 #
 # column densities [cm^-2], including scale factors
@@ -390,19 +376,19 @@ column o3 hydrostatic 4.725e-08  (3.56152e+16 cm^-2)
 #                       o3  4.795129e+18       4.795129e+18      
 #                            (178.47 DU)        (178.47 DU)       
 #
-# troposphere (14 layers):
-#                  dry_air  1.092618e+25       1.092618e+25      
-#                      h2o  6.359473e+21       6.359473e+21      
-#                            (1902.5 um_pwv)    (1902.5 um_pwv)   
-#                       o3  8.783615e+17       8.783615e+17      
-#                            (32.6917 DU)       (32.6917 DU)      
+# troposphere (13 layers):
+#                  dry_air  9.863792e+24       9.863792e+24      
+#                      h2o  4.605554e+21       4.605554e+21      
+#                            (1377.79 um_pwv)   (1377.79 um_pwv)  
+#                       o3  8.287955e+17       8.287955e+17      
+#                            (30.8469 DU)       (30.8469 DU)      
 #
-# total (24 layers):
-#                  dry_air  1.241029e+25       1.241029e+25      
-#                      h2o  6.366174e+21       6.366174e+21      
-#                            (1904.5 um_pwv)    (1904.5 um_pwv)   
-#                       o3  5.673490e+18       5.673490e+18      
-#                            (211.162 DU)       (211.162 DU)      
+# total (23 layers):
+#                  dry_air  1.134790e+25       1.134790e+25      
+#                      h2o  4.612255e+21       4.612255e+21      
+#                            (1379.8 um_pwv)    (1379.8 um_pwv)   
+#                       o3  5.623924e+18       5.623924e+18      
+#                            (209.317 DU)       (209.317 DU)      
 #
 
 ! Warning: Encountered in-band lines narrower than the frequency

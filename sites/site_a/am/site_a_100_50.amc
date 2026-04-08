@@ -163,16 +163,9 @@ column h2o vmr 2.169e-03
 column o3 vmr 5.589e-08
 
 layer troposphere
-Pbase 550.0 mbar
-Tbase 264.46 K
+Pbase 520.15 mbar
+Tbase 261.94 K
 column dry_air vmr
-column h2o vmr 2.412e-03
-column o3 vmr 5.232e-08
-
-layer troposphere
-Pbase 561.21 mbar
-Tbase 265.44 K
-column dry_air vmr
-column h2o vmr 2.412e-03
-column o3 vmr 5.232e-08
+column h2o vmr 2.309e-03
+column o3 vmr 5.416e-08
 
