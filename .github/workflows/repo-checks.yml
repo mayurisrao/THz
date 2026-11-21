@@ -1,0 +1,87 @@
+name: Repository Checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install PyYAML
+        run: pip install pyyaml
+
+      - name: Validate notebooks, CITATION.cff, Markdown links, and repo hygiene
+        run: |
+          python3 - <<'EOF'
+          import json
+          import os
+          import re
+          import sys
+          import yaml
+
+          errors = []
+
+          # 1. Check no .DS_Store files are tracked
+          for dp, dns, fns in os.walk("."):
+              if ".git" in dns:
+                  dns.remove(".git")
+              for f in fns:
+                  if f == ".DS_Store":
+                      errors.append(f"Tracked .DS_Store found: {os.path.join(dp, f)}")
+
+          # 2. Validate all .ipynb files as JSON with cells
+          for dp, dns, fns in os.walk("."):
+              if ".git" in dns:
+                  dns.remove(".git")
+              for f in fns:
+                  if f.endswith(".ipynb"):
+                      p = os.path.join(dp, f)
+                      try:
+                          nb = json.load(open(p, "r", encoding="utf-8"))
+                          if "cells" not in nb or not isinstance(nb["cells"], list):
+                              errors.append(f"Invalid notebook structure (missing cells): {p}")
+                      except Exception as exc:
+                          errors.append(f"Invalid JSON in {p}: {exc}")
+
+          # 3. Validate CITATION.cff YAML
+          try:
+              cff = yaml.safe_load(open("CITATION.cff", "r", encoding="utf-8"))
+              if not isinstance(cff, dict) or "cff-version" not in cff:
+                  errors.append("CITATION.cff is missing required 'cff-version' field")
+          except Exception as exc:
+              errors.append(f"Invalid CITATION.cff YAML: {exc}")
+
+          # 4. Validate relative links in Markdown files
+          for dp, dns, fns in os.walk("."):
+              if ".git" in dns:
+                  dns.remove(".git")
+              for f in fns:
+                  if f.endswith(".md"):
+                      p = os.path.join(dp, f)
+                      txt = open(p, "r", encoding="utf-8").read()
+                      for m in re.finditer(r"\[[^\]]+\]\(([^)]+)\)", txt):
+                          target = m.group(1)
+                          if target.startswith(("http://", "https://", "mailto:", "#")):
+                              continue
+                          resolved = os.path.normpath(os.path.join(dp, target))
+                          if not os.path.exists(resolved):
+                              errors.append(f"Broken relative link in {p}: {target}")
+
+          if errors:
+              for e in errors:
+                  print(f"ERROR: {e}", file=sys.stderr)
+              sys.exit(1)
+
+          print("All repository checks passed.")
+          EOF
