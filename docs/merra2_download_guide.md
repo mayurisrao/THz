@@ -1,78 +1,100 @@
-# wget for Windows
+# MERRA-2 Data Download Guide (`wget` + NASA Earthdata)
 
-<p>
-Make sure you have set up your Earthdata account.
+Instructions for downloading NASA GES DISC / MERRA-2 atmospheric datasets via `wget` on Windows and macOS/Linux.
 
-* Install wget if necessary. A version of wget 1.18 compiled with gnuTLS 3.3.3 or OpenSSL 1.0.2 or LibreSSL 2.0.2 or later is recommended.
-* Create a cookie file. This file will let you download GES DISC resources without having to re-login.
-* Open a run-command window by pressing WinKey + R
-* Next, enter "cmd" in the text field and click "OK"
-* Navigate to the directory you wish to create the cookies file in. In this guide, we place it under the C drive, but any directory will do. You can navigate to the C drive by entering C:
-* Finally, enter NUL > .urs_cookies.
-  <br><em>Note</em>: you may need to re-create .urs_cookies in case you have already executed wget without valid authentication.
-  <br><em>Note</em>: you can get 'Access denied' error. Enter 'dir' to verify that '.urs_cookies' file is listed in your directory.
-  
-## Download your data using wget:
-### To download one file:
+> **Prerequisite:** Create and activate a [NASA Earthdata](https://urs.earthdata.nasa.gov/) account before downloading.
 
-  >wget --load-cookies C:\\\.urs_cookies --save-cookies C:\\\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user=<your username> --ask-password <url>
+---
 
-  * If you are using subsetting services through the GES DISC website:
+## Windows
 
-  >wget --load-cookies C:\\\.urs_cookies --save-cookies C:\\\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user= --ask-password --content-disposition <url>
+1. Install `wget` if necessary (`wget >= 1.18` compiled with GnuTLS 3.3.3, OpenSSL 1.0.2, or LibreSSL 2.0.2 or later is recommended).
+2. Create a cookie file so `wget` can access GES DISC resources without re-authenticating on every request:
+   - Press `Win + R`, type `cmd`, and click **OK**.
+   - Navigate to the directory where you want to store the cookie file (e.g., `C:`):
+     ```bat
+     C:
+     NUL > .urs_cookies
+     ```
+   - *Note:* You may need to recreate `.urs_cookies` if you previously ran `wget` without valid authentication.
+   - *Note:* If you get an `Access denied` error, run `dir` to verify whether `.urs_cookies` already exists in that directory.
 
-* --auth-no-challenge may not be needed depending on your version of wget
-* 'username' is the username belonging to your Earthdata account
-* 'url' is the link that points to a file you wish to download or to an OPeNDAP resource.
-* Only use --content-disposition for downloading subsetted files through the GES DISC website
-* Your Earthdata password might be requested on the first download
-### To download multiple data files at once 
-  create a plain-text <url.txt> file with each line containing a GES DISC data file URL. Then, enter the following command:
+### Download a single file (Windows)
 
-  > wget --load-cookies C:\.urs_cookies --save-cookies C:\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user=<your username> --ask-password -i <url.txt>
+```bat
+wget --load-cookies C:\.urs_cookies --save-cookies C:\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user=<your_username> --ask-password <url>
+```
 
-  * Add the --content-disposition to your command when using subsetting services:
-  
-  > wget --load-cookies C:\.urs_cookies --save-cookies C:\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user= --ask-password --content-disposition -i <url.txt>
+If using subsetting services through the GES DISC website, add `--content-disposition`:
 
-</p>
+```bat
+wget --load-cookies C:\.urs_cookies --save-cookies C:\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user=<your_username> --ask-password --content-disposition <url>
+```
 
-# wget for Mac/Linux
-  
-* Make sure you have set up your Earthdata account.
-* Install wget if necessary. A version of wget 1.18 compiled with gnuTLS 3.3.3 or OpenSSL 1.0.2 or LibreSSL 2.0.2 or later is recommended.
-* Create a .netrc file in your home directory.
-* cd ~ or cd $HOME
-* touch .netrc
-* echo "machine urs.earthdata.nasa.gov login <uid> password <password>" >> .netrc (where <uid> is your user name and <password> is your Earthdata Login password without the brackets)
-* chmod 0600 .netrc (so only you can access it)
-* Create a cookie file. This file will be used to persist sessions across calls to wget or curl.
-* cd ~ or cd $HOME
-* touch .urs_cookies.
-  <em>Note:</em> you may need to re-create .urs_cookies in case you have already executed wget without valid authentication.
+### Download multiple files (Windows)
 
-## Download your data using wget:
-  
-### To download one file:
-  
-  > wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies <url>
+Create a plain-text `<url.txt>` file containing one GES DISC URL per line, then run:
 
-* If you are using subsetting services through the GES DISC website:
+```bat
+wget --load-cookies C:\.urs_cookies --save-cookies C:\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user=<your_username> --ask-password -i <url.txt>
+```
 
-  > wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies --content-disposition <url>
+With GES DISC subsetting services:
 
-* --auth-no-challenge may not be needed depending on your version of wget
-* 'url' is the link that points to a file you wish to download or to an OPeNDAP resource.
-* Only use --content-disposition for downloading subsetted files through the GES DISC website.
-* Your Earthdata password might be requested on the first download
+```bat
+wget --load-cookies C:\.urs_cookies --save-cookies C:\.urs_cookies --auth-no-challenge=on --keep-session-cookies --user=<your_username> --ask-password --content-disposition -i <url.txt>
+```
 
-### To download multiple data files at once
+---
 
-* create a plain-text <url.txt> file with each line containing a GES DISC data file URL. Then, enter the following command:
-  
- > wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies -i <url.txt>
+## macOS / Linux
 
-* Add the --content-disposition to your command when using subsetting services:
+1. Install `wget` if necessary (`wget >= 1.18` compiled with GnuTLS 3.3.3, OpenSSL 1.0.2, or LibreSSL 2.0.2 or later is recommended).
+2. Create a `.netrc` file in your home directory with your Earthdata credentials:
+   ```bash
+   cd ~
+   touch .netrc
+   echo "machine urs.earthdata.nasa.gov login <uid> password <password>" >> .netrc
+   chmod 0600 .netrc
+   ```
+   *(Replace `<uid>` and `<password>` with your Earthdata Login username and password without angle brackets.)*
+3. Create the cookie file to persist sessions across `wget` or `curl` calls:
+   ```bash
+   cd ~
+   touch .urs_cookies
+   ```
+   *(Note: You may need to recreate `.urs_cookies` if you previously ran `wget` without valid authentication.)*
 
- > wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies --content-disposition -i <url.txt>
+### Download a single file (macOS / Linux)
 
+```bash
+wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies <url>
+```
+
+If using GES DISC subsetting services:
+
+```bash
+wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies --content-disposition <url>
+```
+
+### Download multiple files (macOS / Linux)
+
+Create a plain-text `<url.txt>` file with one GES DISC URL per line, then run:
+
+```bash
+wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies -i <url.txt>
+```
+
+With GES DISC subsetting services:
+
+```bash
+wget --load-cookies ~/.urs_cookies --save-cookies ~/.urs_cookies --auth-no-challenge=on --keep-session-cookies --content-disposition -i <url.txt>
+```
+
+---
+
+### Flag Notes
+
+- `--auth-no-challenge=on` may not be needed depending on your `wget` version.
+- Only use `--content-disposition` when downloading subsetted files through the GES DISC website.
+- Your Earthdata password may be requested on the first download.
