@@ -1,0 +1,60 @@
+cff-version: 1.2.0
+title: "Site Quality Analysis for an Indian Submillimeter Telescope: A Reanalysis-based Approach"
+message: "If you use the code, configurations, or outputs in this repository, please cite the associated publication."
+type: software
+authors:
+  - given-names: Tanmay
+    family-names: Singh
+    orcid: "https://orcid.org/0009-0001-5959-9105"
+    affiliation: "Raman Research Institute; Arizona State University"
+  - given-names: Mayuri
+    family-names: Sathyanarayana Rao
+    orcid: "https://orcid.org/0000-0002-9761-3676"
+    affiliation: "Raman Research Institute"
+  - given-names: Ritoban
+    family-names: Basu Thakur
+    orcid: "https://orcid.org/0000-0002-3351-3078"
+    affiliation: "California Institute of Technology; Jet Propulsion Laboratory"
+repository-code: "https://github.com/mayurisrao/THz"
+url: "https://iopscience.iop.org/article/10.3847/1538-3881/ae5e4e"
+abstract: >-
+  Analysis notebooks, radiative-transfer configurations, and site-characterization
+  datasets evaluating precipitable water vapor (PWV), atmospheric transmittance, and
+  sky brightness temperature across the Ladakh plateau for a potential Indian
+  submillimeter/terahertz observatory using ERA5 reanalysis and the `am`
+  radiative transfer model.
+keywords:
+  - submillimeter astronomy
+  - terahertz astronomy
+  - site testing
+  - precipitable water vapor
+  - ERA5 reanalysis
+  - radiative transfer
+  - Ladakh
+  - IAO Hanle
+preferred-citation:
+  type: article
+  title: "Site Quality Analysis for an Indian Submillimeter Telescope: A Reanalysis-based Approach"
+  authors:
+    - given-names: Tanmay
+      family-names: Singh
+      orcid: "https://orcid.org/0009-0001-5959-9105"
+    - given-names: Mayuri
+      family-names: Sathyanarayana Rao
+      orcid: "https://orcid.org/0000-0002-9761-3676"
+    - given-names: Ritoban
+      family-names: Basu Thakur
+      orcid: "https://orcid.org/0000-0002-3351-3078"
+  journal: "The Astronomical Journal"
+  volume: 171
+  issue: 6
+  start: 331
+  year: 2026
+  month: 6
+  doi: "10.3847/1538-3881/ae5e4e"
+  url: "https://iopscience.iop.org/article/10.3847/1538-3881/ae5e4e"
+  identifiers:
+    - type: doi
+      value: "10.3847/1538-3881/ae5e4e"
+    - type: other
+      value: "arXiv:2604.13487"
